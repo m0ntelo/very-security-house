@@ -1,2 +1,28 @@
-VerySecurityHouse
-<router-outlet></router-outlet>
+<section class="main">
+    <div class="main__header">
+        <div 
+            class="main__header__tab" 
+            routerLink="/step-1" 
+            ariaCurrentWhenActive="page" 
+            routerLinkActive="active">
+            Step 1
+        </div>
+        <div 
+            class="main__header__tab" 
+            routerLink="/step-2" 
+            ariaCurrentWhenActive="page" 
+            routerLinkActive="active">
+            Step 2
+        </div>
+        <div 
+            class="main__header__tab" 
+            routerLink="/step-3" 
+            ariaCurrentWhenActive="page" 
+            routerLinkActive="active">
+            Step 3
+        </div>
+    </div>
+    <div class="main__body">
+        <router-outlet></router-outlet>
+    </div>
+</section>

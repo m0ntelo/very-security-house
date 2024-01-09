@@ -1,0 +1,27 @@
+.main {
+    margin: 0 auto;
+    width: 900px;
+    height: 400px;
+    border: 1px solid red;
+
+    &__header {
+        color: red;
+        display: flex;
+
+        &__tab {
+            width: 100%;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-align: center;
+
+            &:hover {
+                background-color: black;
+                color: white;
+            }
+        }
+    }
+
+    &__body {
+        color: blue;
+    }
+}
