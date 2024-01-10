@@ -2,13 +2,15 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit, AfterViewChecked } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Door } from '@models/Door';
+import { DoorComponent } from '@shared/door/door.component';
 
 @Component({
   selector: 'app-step-1',
   standalone: true,
   imports: [
     CommonModule,
-    MatGridListModule
+    MatGridListModule,
+    DoorComponent
   ],
   templateUrl: './step-1.component.html',
   styleUrl: './step-1.component.scss'
@@ -45,10 +47,6 @@ export default class Step1Component implements OnInit, AfterViewChecked {
     this.unlock();
   }
 
-  public open(attr: boolean, index: number): void{
-    this.doors[index].open=!attr;
-  }
-
   private unlock(): void {
     if(this.contain(this.doors, 'open', true)) {
       this.doors[0].blocked = false
@@ -60,6 +58,6 @@ export default class Step1Component implements OnInit, AfterViewChecked {
   }
 
   public next(): void {
-    console.log('next step')
+    console.log('next step 1')
   }
 }
