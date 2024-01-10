@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { ChangeDetectorRef, Component, AfterViewChecked } from '@angular/core';
+import { ChangeDetectorRef, Component, AfterViewChecked, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 
@@ -8,6 +8,7 @@ import { Door } from '@models/Door';
 import { DoorComponent } from '@components/door/door.component';
 import { ModalComponent } from '@components/modal/modal.component';
 import { DoorService } from '@core/service/door.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-step-1',
@@ -20,8 +21,9 @@ import { DoorService } from '@core/service/door.service';
   templateUrl: './step-1.component.html',
   styleUrl: './step-1.component.scss'
 })
-export default class Step1Component implements AfterViewChecked {
+export default class Step1Component implements AfterViewChecked, OnDestroy {
 
+  private unSubscribe = new Subject<void>();
   public doors: Door[] = [
     { cols: 6, rows: 1, open: false, blocked: true,  id: 1, main: true },
     { cols: 2, rows: 1, open: false, blocked: false, id: 2, main: false },
@@ -35,6 +37,15 @@ export default class Step1Component implements AfterViewChecked {
     private doorService: DoorService,
     private router: Router
   ) {}
+  
+  ngAfterViewChecked(): void {
+    this.unlock();
+  }
+  
+  ngOnDestroy(): void {
+    this.unSubscribe.next();
+    this.unSubscribe.complete();
+  }
 
   private contain(arr: any, key: string, val: boolean): boolean {
     let aux = [];
@@ -45,10 +56,6 @@ export default class Step1Component implements AfterViewChecked {
     }
     
     return (aux.length >= (arr.length) - 1);
-  }
-  
-  ngAfterViewChecked(): void {
-    this.unlock();
   }
 
   private unlock(): void {
@@ -65,6 +72,7 @@ export default class Step1Component implements AfterViewChecked {
     this.dialog
         .open(ModalComponent)
         .afterClosed()
+        .pipe(takeUntil(this.unSubscribe))
         .subscribe(
           (req) => {
             if(req) {

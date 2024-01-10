@@ -8,6 +8,7 @@ import { Door } from '@models/Door';
 import { DoorComponent } from '@components/door/door.component';
 import { DoorService } from '@core/service/door.service';
 import { ModalComponent } from '@components/modal/modal.component';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-step-2',
@@ -21,7 +22,8 @@ import { ModalComponent } from '@components/modal/modal.component';
   styleUrl: './step-2.component.scss'
 })
 export default class Step2Component {
-
+  
+  private unSubscribe = new Subject<void>();
   public doors: Door[] = [
     { cols: 2, rows: 1, open: false, blocked: false, id: 1, main: false },
     { cols: 2, rows: 1, open: false, blocked: false, id: 2, main: false },
@@ -39,6 +41,11 @@ export default class Step2Component {
   
   ngAfterViewChecked(): void {
     this.unlock();
+  }
+
+  ngOnDestroy(): void {
+    this.unSubscribe.next();
+    this.unSubscribe.complete();
   }
 
   private contain(arr: any, key: string, val: boolean): boolean {
@@ -66,6 +73,7 @@ export default class Step2Component {
     this.dialog
         .open(ModalComponent)
         .afterClosed()
+        .pipe(takeUntil(this.unSubscribe))
         .subscribe(
           (req) => {
             if (req) {
