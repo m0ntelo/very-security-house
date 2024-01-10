@@ -3,9 +3,9 @@ import { ChangeDetectorRef, Component, OnInit, AfterViewChecked } from '@angular
 import { MatDialog } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 
-import { Door } from '@models/Door';
-import { DoorComponent } from '@shared/door/door.component';
-import { ModalComponent } from '@shared/modal/modal.component';
+import { Door } from '@shared/models/Door';
+import { DoorComponent } from '@shared/components/door/door.component';
+import { ModalComponent } from '@shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-step-1',
@@ -32,9 +32,7 @@ export default class Step1Component implements OnInit, AfterViewChecked {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit(): void { 
-    // code
-  }
+  ngOnInit(): void {}
 
   private contain(arr: any, key: string, val: boolean): boolean {
     let aux = [];

@@ -7,10 +7,12 @@
         <div class="door__knob"></div>
     </div>
     <div class="door__back">
-        <div 
-            *ngIf="door.main === true"
-            class="door__back__next"
-            (click)="nextStep()"></div>
+        @if(door.main) {
+            <div 
+                class="door__back__next"
+                (click)="nextStep()">
+            </div>
+        }
     </div>
     <div class="door__mat"></div>
 </div>
