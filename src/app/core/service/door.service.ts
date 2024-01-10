@@ -10,6 +10,7 @@ export class DoorService {
     2: { access: false },
     3: { access: false }
   }
+  
   constructor() { }
 
   public isLoggedIn(index: number): boolean {

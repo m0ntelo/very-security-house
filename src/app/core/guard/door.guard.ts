@@ -9,7 +9,7 @@ export const DoorGuard: CanActivateFn = (route, state) => {
 
   if (door.isLoggedIn(index)) {
     return true;
-  }
+  } 
 
   return router.navigate(['1']);
 };

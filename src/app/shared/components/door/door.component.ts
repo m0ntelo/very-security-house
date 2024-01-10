@@ -14,7 +14,7 @@ export class DoorComponent {
   @Output() next: EventEmitter<void> = new EventEmitter();
   
   constructor() {}
-
+  
   public nextStep(): void {
     this.next.emit();
   }

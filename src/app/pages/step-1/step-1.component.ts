@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { ChangeDetectorRef, Component, OnInit, AfterViewChecked } from '@angular/core';
+import { ChangeDetectorRef, Component, AfterViewChecked } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 
@@ -20,7 +20,7 @@ import { DoorService } from '@core/service/door.service';
   templateUrl: './step-1.component.html',
   styleUrl: './step-1.component.scss'
 })
-export default class Step1Component implements OnInit, AfterViewChecked {
+export default class Step1Component implements AfterViewChecked {
 
   public doors: Door[] = [
     { cols: 6, rows: 1, open: false, blocked: true,  id: 1, main: true },
@@ -35,8 +35,6 @@ export default class Step1Component implements OnInit, AfterViewChecked {
     private doorService: DoorService,
     private router: Router
   ) {}
-
-  ngOnInit(): void {}
 
   private contain(arr: any, key: string, val: boolean): boolean {
     let aux = [];
