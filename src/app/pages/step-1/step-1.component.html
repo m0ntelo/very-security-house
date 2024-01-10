@@ -1,15 +1,13 @@
-<div class="step-1">
-    <mat-grid-list 
-        cols="6" 
-        rowHeight="300px">
-        @for (door of doors; track door; let idx = $index) {
-            <mat-grid-tile
-                [colspan]="door.cols"
-                [rowspan]="door.rows">
-                <app-door 
-                    [door]="door"
-                    (next)="openModal()"></app-door>
-            </mat-grid-tile>
-        }
-    </mat-grid-list>
-</div>
+<mat-grid-list 
+    cols="6" 
+    rowHeight="300px">
+    @for (door of doors; track door; let idx = $index) {
+        <mat-grid-tile
+            [colspan]="door.cols"
+            [rowspan]="door.rows">
+            <app-door 
+                [door]="door"
+                (next)="openModal()"></app-door>
+        </mat-grid-tile>
+    }
+</mat-grid-list>
