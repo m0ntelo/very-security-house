@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { KeyboardComponent } from './keyboard.component';
 
-describe('KeyboardComponent', () => {
+describe('Keyboard2Component', () => {
   let component: KeyboardComponent;
   let fixture: ComponentFixture<KeyboardComponent>;
 

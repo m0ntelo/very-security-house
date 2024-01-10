@@ -1,1 +1,22 @@
-<p>keyboard works!</p>
+<mat-grid-list cols="3" rowHeight="2:1">
+    @for(key of numericKeys; track key; let idx = $index) {
+        <mat-grid-tile class="key" (click)="onKeyClick(key)">
+            <div class="numeric-key">{{ key }}</div>
+        </mat-grid-tile>
+    }
+    <mat-grid-tile 
+        class="confirm" 
+        (click)="onConfirmClick()"
+        [ngClass]="{ 'disabled' : currentInput.length < 8 }">
+        <div class="numeric-key">
+            ENTER
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile 
+        class="delete" 
+        (click)="onDeleteClick()">
+        <div class="numeric-key">
+            DEL
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
