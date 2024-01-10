@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit, AfterViewChecked } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+
 import { Door } from '@models/Door';
 import { DoorComponent } from '@shared/door/door.component';
+import { ModalComponent } from '@shared/modal/modal.component';
 
 @Component({
   selector: 'app-step-1',
@@ -10,7 +13,7 @@ import { DoorComponent } from '@shared/door/door.component';
   imports: [
     CommonModule,
     MatGridListModule,
-    DoorComponent
+    DoorComponent,
   ],
   templateUrl: './step-1.component.html',
   styleUrl: './step-1.component.scss'
@@ -22,10 +25,11 @@ export default class Step1Component implements OnInit, AfterViewChecked {
     { cols: 2, rows: 1, open: false, blocked: false, id: 2, main: false },
     { cols: 2, rows: 1, open: false, blocked: false, id: 3, main: false },
     { cols: 2, rows: 1, open: false, blocked: false, id: 4, main: false }
-  ];  
+  ];
 
   constructor(
-    private ref: ChangeDetectorRef
+    private ref: ChangeDetectorRef,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void { 
@@ -57,7 +61,14 @@ export default class Step1Component implements OnInit, AfterViewChecked {
     this.ref.detectChanges();
   }
 
-  public next(): void {
-    console.log('next step 1')
+  public openModal(): void {
+    this.dialog
+        .open(ModalComponent)
+        .afterClosed()
+        .subscribe(
+          (req) => {
+            console.log(req, 'req')
+          }
+        );
   }
 }
