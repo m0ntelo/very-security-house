@@ -1,1 +1,25 @@
-<p>step-1 works!</p>
+<div class="step-1">
+    <mat-grid-list cols="6" rowHeight="300px">
+        @for (door of doors; track door; let idx = $index) {
+          <mat-grid-tile
+            [colspan]="door.cols"
+            [rowspan]="door.rows">
+            <div class="door"
+                [ngClass]="{ 'blocked' : door.blocked === true && door.open === false}">
+                <div 
+                    class="door__front"
+                    [ngClass]="{ 'open' : door.open === true }"
+                    (click)="open(door.open, idx)">
+                    <div class="door__knob"></div>
+                </div>
+                <div class="door__back">
+                    <div *ngIf="door.main === true"
+                        class="door__back__next"
+                        (click)="next()"></div>
+                </div>
+                <div class="door__mat"></div>
+            </div>
+        </mat-grid-tile>
+        }
+    </mat-grid-list>
+</div>

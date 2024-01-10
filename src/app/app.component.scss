@@ -1,21 +1,24 @@
 .main {
     margin: 0 auto;
-    width: 900px;
+    width: 1200px;
     height: 400px;
-    border: 1px solid red;
 
     &__header {
-        color: red;
         display: flex;
+        background-color: white;
+        color: black;
 
         &__tab {
             width: 100%;
-            padding: 10px 20px;
+            margin-bottom: 100px;
+            padding: 20px 20px;
             cursor: pointer;
             text-align: center;
+            font-size: 18px;
+            border-bottom: 3px solid #ccc;
 
             &:hover {
-                background-color: black;
+                background-color: #ccc;
                 color: white;
             }
         }
