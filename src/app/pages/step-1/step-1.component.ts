@@ -3,9 +3,9 @@ import { ChangeDetectorRef, Component, OnInit, AfterViewChecked } from '@angular
 import { MatDialog } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 
-import { Door } from '@shared/models/Door';
-import { DoorComponent } from '@shared/components/door/door.component';
-import { ModalComponent } from '@shared/components/modal/modal.component';
+import { Door } from '@models/Door';
+import { DoorComponent } from '@components/door/door.component';
+import { ModalComponent } from '@components/modal/modal.component';
 
 @Component({
   selector: 'app-step-1',

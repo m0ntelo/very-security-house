@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Door } from '@shared/models/Door';
+import { Door } from '@models/Door';
 
 @Component({
   selector: 'app-door',
