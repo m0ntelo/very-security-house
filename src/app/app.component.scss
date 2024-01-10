@@ -1,6 +1,6 @@
 .main {
     margin: 0 auto;
-    width: 1200px;
+    width: auto;
     height: 400px;
 
     &__header {
@@ -12,19 +12,19 @@
             width: 100%;
             margin-bottom: 100px;
             padding: 20px 20px;
-            cursor: pointer;
             text-align: center;
             font-size: 18px;
-            border-bottom: 3px solid #ccc;
-
-            &:hover {
-                background-color: #ccc;
-                color: white;
-            }
+            border-bottom: 3px solid black;
         }
     }
 
     &__body {
         color: blue;
     }
+}
+
+.active {
+    background-color: #f5eeee;
+    color: black;
+    border-bottom: 3px solid black;
 }

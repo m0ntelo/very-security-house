@@ -5,5 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class DoorService {
 
+  public router: any = {
+    1: { access: false },
+    2: { access: false },
+    3: { access: false }
+  }
   constructor() { }
+
+  public isLoggedIn(index: number): boolean {
+    return this.router[index].access;
+  }
 }

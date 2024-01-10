@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnInit, AfterViewChecked } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -6,6 +7,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { Door } from '@models/Door';
 import { DoorComponent } from '@components/door/door.component';
 import { ModalComponent } from '@components/modal/modal.component';
+import { DoorService } from '@core/service/door.service';
 
 @Component({
   selector: 'app-step-1',
@@ -29,7 +31,9 @@ export default class Step1Component implements OnInit, AfterViewChecked {
 
   constructor(
     private ref: ChangeDetectorRef,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private doorService: DoorService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -65,8 +69,16 @@ export default class Step1Component implements OnInit, AfterViewChecked {
         .afterClosed()
         .subscribe(
           (req) => {
-            console.log(req, 'req')
+            if(req) {
+              this.redirectRouter();
+            }
           }
         );
+  }
+
+  private redirectRouter(): void {
+    const url = Number(this.router.url.replace('/', '')) + 1;
+    this.doorService.router[url].access = true;
+    this.router.navigate([url]);
   }
 }

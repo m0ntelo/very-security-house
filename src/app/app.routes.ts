@@ -9,16 +9,17 @@ export const routes: Routes = [
     },
     {
         path: '1',
-        loadComponent: () => import('@pages/step-1/step-1.component'),
-        canActivate: [DoorGuard]
+        loadComponent: () => import('@pages/step-1/step-1.component')
     },
     {
         path: '2',
-        loadComponent: () => import('@pages/step-2/step-2.component') 
+        loadComponent: () => import('@pages/step-2/step-2.component'),
+        canActivate: [DoorGuard]
     },
     {
         path: '3',
-        loadComponent: () => import('@pages/step-3/step-3.component') 
+        loadComponent: () => import('@pages/step-3/step-3.component'),
+        canActivate: [DoorGuard]
     },
     { 
         path: '**', 
