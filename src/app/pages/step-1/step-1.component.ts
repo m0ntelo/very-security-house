@@ -3,12 +3,14 @@ import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, AfterViewChecked, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { Subject, takeUntil } from 'rxjs';
 
 import { Door } from '@models/Door';
 import { DoorComponent } from '@components/door/door.component';
 import { ModalComponent } from '@components/modal/modal.component';
 import { DoorService } from '@core/service/door.service';
-import { Subject, takeUntil } from 'rxjs';
+import { mockStep1 } from '@shared/mock/all-step.mock';
+import { contain, getIndexDoorMain } from '@shared/utils/functions';
 
 @Component({
   selector: 'app-step-1',
@@ -23,13 +25,9 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export default class Step1Component implements AfterViewChecked, OnDestroy {
 
+  public doors: Door[] = mockStep1;
+  private indexDoorMain: number = getIndexDoorMain(this.doors);
   private unSubscribe = new Subject<void>();
-  public doors: Door[] = [
-    { cols: 6, rows: 1, open: false, blocked: true,  id: 1, main: true },
-    { cols: 2, rows: 1, open: false, blocked: false, id: 2, main: false },
-    { cols: 2, rows: 1, open: false, blocked: false, id: 3, main: false },
-    { cols: 2, rows: 1, open: false, blocked: false, id: 4, main: false }
-  ];
 
   constructor(
     private ref: ChangeDetectorRef,
@@ -40,6 +38,7 @@ export default class Step1Component implements AfterViewChecked, OnDestroy {
   
   ngAfterViewChecked(): void {
     this.unlock();
+    this.ref.detectChanges();
   }
   
   ngOnDestroy(): void {
@@ -47,30 +46,23 @@ export default class Step1Component implements AfterViewChecked, OnDestroy {
     this.unSubscribe.complete();
   }
 
-  private contain(arr: any, key: string, val: boolean): boolean {
-    let aux = [];
-    for (let i = 0; i < arr.length; i++) { 
-      if (arr[i][key] === val && arr[i]['main'] === !val) {
-        aux.push(arr[i].id);
-      } 
-    }
-    
-    return (aux.length >= (arr.length) - 1);
-  }
-
   private unlock(): void {
-    if(this.contain(this.doors, 'open', true)) {
-      this.doors[0].blocked = false
+    if(contain(this.doors, 'open', true)) {
+      this.doors[this.indexDoorMain].blocked = false
     } else {
-      this.doors[0].open = false
-      this.doors[0].blocked = true
+      this.doors[this.indexDoorMain].open = false
+      this.doors[this.indexDoorMain].blocked = true
     }
-    this.ref.detectChanges();
   }
 
   public openModal(): void {
     this.dialog
-        .open(ModalComponent, { data: { title: 'Confirmar', description: 'Você deseja avançar para próxima etapa?'} })
+        .open(ModalComponent, { 
+          data: { 
+            title: 'Confirmar', 
+            description: 'Você deseja avançar para próxima etapa?' 
+          }
+        })
         .afterClosed()
         .pipe(takeUntil(this.unSubscribe))
         .subscribe(

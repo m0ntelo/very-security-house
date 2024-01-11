@@ -31,8 +31,4 @@ export class KeyboardComponent {
       this.keyClicked.emit(this.currentInput);
     }
   }
-
-  public onConfirmClick(): void {
-
-  }
 }

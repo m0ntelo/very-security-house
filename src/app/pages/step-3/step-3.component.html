@@ -6,8 +6,14 @@
                 (next)="openModal()"></app-door>
         }
     </div>
+    @if (!checkPassword && displayValue.length === 8) {
+        <div class="step-3__invalid">Sua senha está errada. Digite novamente</div>
+    }
     <div class="step-3__password">
-        <input type="text" [value]="displayValue" placeholder="Password">
+        <input 
+            type="password" 
+            [value]="displayValue" 
+            placeholder="Password">
     </div>
     <app-keyboard (keyClicked)="onKeyClicked($event)"></app-keyboard>
     <div class="step-3__restart">
