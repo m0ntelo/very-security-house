@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>
+    {{ data.title }}
+</h1>
+    @if (data.img) {
+        <div mat-dialog-content>
+            <img [src]="data.img">
+        </div>
+    } @else {
+        <div mat-dialog-content>
+            <p>{{ data.description }}</p>
+        </div>
+    }
+<div mat-dialog-actions>
+    @if (data.img) {
+        <button 
+            mat-raised-button
+            color="primary"
+            [mat-dialog-close]="true"
+            cdkFocusInitial>
+            OK
+        </button>
+    } @else {
+        <button 
+            mat-button 
+            [mat-dialog-close]="false">
+            Não
+        </button>
+        <button 
+            mat-raised-button
+            color="primary"
+            [mat-dialog-close]="true"
+            cdkFocusInitial>
+            Confirmar
+        </button>
+    }
+</div>

@@ -1,0 +1,26 @@
+.main {
+    margin: 0 auto;
+    width: auto;
+    height: 400px;
+
+    &__header {
+        display: flex;
+        background-color: white;
+        color: black;
+
+        &__tab {
+            width: 100%;
+            margin-bottom: 100px;
+            padding: 20px 20px;
+            text-align: center;
+            font-size: 18px;
+            border-bottom: 3px solid black;
+        }
+    }
+}
+
+.active {
+    background-color: #f5eeee;
+    color: black;
+    border-bottom: 3px solid black;
+}

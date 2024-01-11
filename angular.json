@@ -5,7 +5,9 @@
   "projects": {
     "very-security-house": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+    
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -25,7 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -84,12 +87,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

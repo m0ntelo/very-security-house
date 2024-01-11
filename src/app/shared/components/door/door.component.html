@@ -1,0 +1,18 @@
+<div class="door"
+    [ngClass]="{ 'blocked' : door.blocked === true && door.open === false}">
+    <div 
+        class="door__front"
+        [ngClass]="{ 'open' : door.open === true }"
+        (click)="door.open=!door.open">
+        <div class="door__knob"></div>
+    </div>
+    <div class="door__back">
+        @if(door.main) {
+            <div 
+                class="door__back__next"
+                (click)="nextStep()">
+            </div>
+        }
+    </div>
+    <div class="door__mat"></div>
+</div>

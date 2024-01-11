@@ -1,0 +1,29 @@
+.step-3 {
+    width: 300px;
+    margin: 0 auto;
+
+    &__door {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 100px;
+    }
+
+    &__password {
+        
+        input {
+            width: 296px;
+            height: 50px;
+            font-size: 20px;
+            border-top: 2px solid black;
+            border-left: 2px solid black;
+            border-right: 2px solid black;
+            border-bottom: none;
+        }
+    }
+
+    &__restart {
+        display: flex;
+        justify-content: center;
+        margin-top: 60px;
+    }
+}
