@@ -64,4 +64,32 @@ describe('Step1Component', () => {
 
     expect(matDialogRefSpy.afterClosed).toHaveBeenCalled();
   });
+
+  it('should unlock the door when contain returns true for open doors', () => {
+    component['indexDoorMain'] = 0;
+    component.doors = [
+      { id: 1, open: false, blocked: true, main: true },
+      { id: 2, open: true, blocked: false, main: false },
+      { id: 3, open: true, blocked: false, main: false },
+      { id: 4, open: true, blocked: false, main: false },
+    ];
+
+    component.unlock();
+
+    expect(component.doors[0].blocked).toBeFalse();
+  });
+
+  it('should close and block the door when contain returns false for open doors', () => {
+    component['indexDoorMain'] = 0;
+    component.doors = [
+      { id: 1, open: false, blocked: true, main: true },
+      { id: 2, open: false, blocked: false, main: false },
+      { id: 3, open: false, blocked: false, main: false },
+      { id: 4, open: false, blocked: false, main: false },
+    ];
+
+    component.unlock();
+
+    expect(component.doors[0].blocked).toBeTrue();
+  });
 });
