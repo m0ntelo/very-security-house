@@ -46,7 +46,7 @@ export default class Step2Component implements AfterViewChecked, OnDestroy {
     this.unSubscribe.complete();
   }
 
-  private unlock(): void {
+  public unlock(): void {
     if(contain(this.doors, 'open', true)) {
       this.doors[this.indexDoorMain].blocked = false
     } else {

@@ -46,7 +46,7 @@ export default class Step1Component implements AfterViewChecked, OnDestroy {
     this.unSubscribe.complete();
   }
 
-  private unlock(): void {
+  public unlock(): void {
     if(contain(this.doors, 'open', true)) {
       this.doors[this.indexDoorMain].blocked = false
     } else {
@@ -74,7 +74,7 @@ export default class Step1Component implements AfterViewChecked, OnDestroy {
         );
   }
 
-  private redirectRouter(): void {
+  public redirectRouter(): void {
     const url = Number(this.router.url.replace('/', '')) + 1;
     this.doorService.router[url].access = true;
     this.router.navigate([url]);

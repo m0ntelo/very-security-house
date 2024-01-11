@@ -50,7 +50,7 @@ export default class Step3Component implements AfterViewChecked {
     return this.displayValue === this.password;
   }
 
-  private unlock(): void {
+  public unlock(): void {
     if(this.checkPassword) {
       this.doors[this.indexDoorMain].blocked = false
     } else {
