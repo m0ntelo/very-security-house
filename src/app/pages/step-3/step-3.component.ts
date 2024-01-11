@@ -23,7 +23,7 @@ import { Door } from '@models/Door';
 export default class Step3Component implements AfterViewChecked {
 
   public displayValue: string = '';
-  public password = '12345678';
+  public password = '28091998';
   public doors: Door[] = [
     { cols: 2, rows: 1, open: false, blocked: true, id: 1, main: true }
   ];
@@ -44,12 +44,12 @@ export default class Step3Component implements AfterViewChecked {
     this.unSubscribe.complete();
   }
 
-  private checkPassword(): boolean {
+  public get checkPassword(): boolean {
     return this.displayValue === this.password;
   }
 
   private unlock(): void {
-    if(this.checkPassword()) {
+    if(this.checkPassword) {
       this.doors[0].blocked = false
     } else {
       this.doors[0].open = false
