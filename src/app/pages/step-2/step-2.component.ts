@@ -74,7 +74,7 @@ export default class Step2Component implements AfterViewChecked, OnDestroy {
         );
   }
 
-  private redirectRouter(): void {
+  public redirectRouter(): void {
     const url = Number(this.router.url.replace('/', '')) + 1;
     this.doorService.router[url].access = true;
     this.router.navigate([url]);
