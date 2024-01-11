@@ -66,4 +66,25 @@ describe('Step3Component', () => {
 
     expect(component.displayValue).toBe(key);
   });
+
+  it('should unlock the door when checkPassword is true', () => {
+    component.displayValue = '28091998';
+    component['indexDoorMain'] = 0;
+    component.doors = [{ id: 1, open: true, blocked: true }];
+
+    component.unlock();
+
+    expect(component.doors[0].blocked).toBeFalsy();
+  });
+
+  it('should close and block the door when checkPassword is false', () => {
+    component.displayValue = '12345678';
+    component['indexDoorMain'] = 0;
+    component.doors = [{ id: 1, open: true, blocked: false }];
+
+    component.unlock();
+
+    expect(component.doors[0].open).toBeFalsy();
+    expect(component.doors[0].blocked).toBeTruthy();
+  });
 });
