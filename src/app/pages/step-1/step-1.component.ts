@@ -70,7 +70,7 @@ export default class Step1Component implements AfterViewChecked, OnDestroy {
 
   public openModal(): void {
     this.dialog
-        .open(ModalComponent)
+        .open(ModalComponent, { data: { title: 'Confirmar', description: 'Você deseja avançar para próxima etapa?'} })
         .afterClosed()
         .pipe(takeUntil(this.unSubscribe))
         .subscribe(

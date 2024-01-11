@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ import { Subject, takeUntil } from 'rxjs';
   templateUrl: './step-2.component.html',
   styleUrl: './step-2.component.scss'
 })
-export default class Step2Component {
+export default class Step2Component implements AfterViewChecked, OnDestroy {
   
   private unSubscribe = new Subject<void>();
   public doors: Door[] = [
@@ -71,7 +71,7 @@ export default class Step2Component {
 
   public openModal(): void {
     this.dialog
-        .open(ModalComponent)
+        .open(ModalComponent, { data: { title: 'Confirmar', description: 'Você deseja avançar para próxima etapa?'} })
         .afterClosed()
         .pipe(takeUntil(this.unSubscribe))
         .subscribe(

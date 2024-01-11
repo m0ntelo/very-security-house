@@ -1,19 +1,36 @@
 <h1 mat-dialog-title>
-    Confirmar
+    {{ data.title }}
 </h1>
-    <div mat-dialog-content>
-        <p>Você deseja avançar para próxima etapa?</p>
-    </div>
+    @if (data.img) {
+        <div mat-dialog-content>
+            <img [src]="data.img">
+        </div>
+    } @else {
+        <div mat-dialog-content>
+            <p>{{ data.description }}</p>
+        </div>
+    }
 <div mat-dialog-actions>
-    <button 
-        mat-button 
-        [mat-dialog-close]="false">
-        Não
-    </button>
-    <button 
-        mat-button 
-        [mat-dialog-close]="true"
-        cdkFocusInitial>
-        Confirmar
-    </button>
+    @if (data.img) {
+        <button 
+            mat-raised-button
+            color="primary"
+            [mat-dialog-close]="true"
+            cdkFocusInitial>
+            OK
+        </button>
+    } @else {
+        <button 
+            mat-button 
+            [mat-dialog-close]="false">
+            Não
+        </button>
+        <button 
+            mat-raised-button
+            color="primary"
+            [mat-dialog-close]="true"
+            cdkFocusInitial>
+            Confirmar
+        </button>
+    }
 </div>

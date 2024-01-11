@@ -90,7 +90,7 @@
             animation: pulse 2s infinite;
 
             &::before {
-                content: "Next Step";
+                content: "Próximo";
                 font-size: 10px;
                 position: relative;
                 display: flex;
@@ -132,7 +132,7 @@
     pointer-events: none;
 
     &::before {
-        content: "Bloqueado";
+        content: "Bloqueada";
         width: 120px;
         height: 30px;
         color: white;

@@ -1,4 +1,21 @@
 <section class="step-3">
-    <div class="step-3__password">{{ displayValue }}</div>
+    <div class="step-3__door">
+        @for (door of doors; track door; let idx = $index) {
+            <app-door 
+                [door]="door"
+                (next)="openModal()"></app-door>
+        }
+    </div>
+    <div class="step-3__password">
+        <input type="text" [value]="displayValue" placeholder="Password">
+    </div>
     <app-keyboard (keyClicked)="onKeyClicked($event)"></app-keyboard>
+    <div class="step-3__restart">
+        <button 
+            mat-raised-button
+            color="primary"
+            (click)="restart()">
+            Reiniciar
+        </button>
+    </div>
 </section>
