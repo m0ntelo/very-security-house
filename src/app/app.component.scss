@@ -10,10 +10,10 @@
         display: flex;
         background-color: white;
         color: black;
+        z-index: 9999;
 
         &__tab {
             width: 100%;
-            margin-bottom: 100px;
             padding: 20px 20px;
             text-align: center;
             font-size: 18px;
