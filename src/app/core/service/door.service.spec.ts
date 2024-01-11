@@ -5,8 +5,8 @@ import { DoorService } from './door.service';
 describe('DoorService', () => {
   let service: DoorService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({});
     service = TestBed.inject(DoorService);
   });
 
